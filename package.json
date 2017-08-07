@@ -1,0 +1,87 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "git+https://github.com/reactnativecn/react-native-qq.git",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "git+https://github.com/reactnativecn/react-native-qq.git",
+        "spec": "git+https://github.com/reactnativecn/react-native-qq.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:reactnativecn/react-native-qq.git",
+          "sshUrl": "git+ssh://git@github.com/reactnativecn/react-native-qq.git",
+          "httpsUrl": "git+https://github.com/reactnativecn/react-native-qq.git",
+          "gitUrl": "git://github.com/reactnativecn/react-native-qq.git",
+          "shortcut": "github:reactnativecn/react-native-qq",
+          "directUrl": "https://raw.githubusercontent.com/reactnativecn/react-native-qq/master/package.json"
+        }
+      },
+      "d:\\USEABCV2\\SourceCode\\YSApp"
+    ]
+  ],
+  "_from": "git+https://github.com/reactnativecn/react-native-qq.git",
+  "_id": "react-native-qq@2.0.5",
+  "_inCache": true,
+  "_location": "/react-native-qq",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "git+https://github.com/reactnativecn/react-native-qq.git",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "git+https://github.com/reactnativecn/react-native-qq.git",
+    "spec": "git+https://github.com/reactnativecn/react-native-qq.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:reactnativecn/react-native-qq.git",
+      "sshUrl": "git+ssh://git@github.com/reactnativecn/react-native-qq.git",
+      "httpsUrl": "git+https://github.com/reactnativecn/react-native-qq.git",
+      "gitUrl": "git://github.com/reactnativecn/react-native-qq.git",
+      "shortcut": "github:reactnativecn/react-native-qq",
+      "directUrl": "https://raw.githubusercontent.com/reactnativecn/react-native-qq/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/reactnativecn/react-native-qq.git#eecd00062ba1dac02af7ee8a4f8538fd8e7e394d",
+  "_shasum": "3cefb9d513454d7886276a8f71fe20e07b5a7dd8",
+  "_shrinkwrap": null,
+  "_spec": "git+https://github.com/reactnativecn/react-native-qq.git",
+  "_where": "d:\\USEABCV2\\SourceCode\\YSApp",
+  "author": {
+    "name": "tdzl2003"
+  },
+  "bugs": {
+    "url": "https://github.com/reactnativecn/react-native-qq/issues"
+  },
+  "dependencies": {},
+  "description": "QQ Login&Share support in React Native.",
+  "devDependencies": {},
+  "gitHead": "eecd00062ba1dac02af7ee8a4f8538fd8e7e394d",
+  "homepage": "https://github.com/reactnativecn/react-native-qq#readme",
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "react-native-qq",
+  "optionalDependencies": {},
+  "readme": "# react-native-qq\r\n\r\nReact Native的QQ登录插件, react-native版本需要0.33.0及以上\r\n\r\n## 如何安装\r\n\r\n### 首先安装npm包\r\n\r\n```bash\r\nnpm install react-native-qq --save\r\n```\r\n### 安装iOS工程\r\n将`node_modules/react-native-qq/ios/RCTQQAPI.xcodeproj`加入到工程中\r\n\r\n在工程target的`Build Phases->Link Binary with Libraries`中加入`libRCTQQAPI.a、libiconv.tbd、libsqlite3.tbd、libz.tbd、libc++.tbd`\r\n\r\n在 `Build Settings->Search Paths->Framework Search Paths` 中加入路径 `$(SRCROOT)/../node_modules/react-native-qq/ios/RCTQQAPI`\r\n\r\n在 `Build Settings->Link->Other Linker Flags` 中加入 `-framework \"TencentOpenAPI\"`\r\n\r\n在 `Apple LLVM 7.0 - Custom Compiler Flags->Link->Other C Flags`中加入 `-isystem \"$(SRCROOT)/../node_modules/react-native-qq/ios/RCTQQAPI\"`\r\n\r\n在工程plist文件中加入qq白名单：(ios9以上必须)\r\n如果plist中没有 `LSApplicationQueriesSchemes`项，请先添加该项，Type设置为Array。接着，在`LSApplicationQueriesSchemes`中添加子项：`mqqapi、mqq、mqqOpensdkSSoLogin、mqqconnect、mqqopensdkdataline、mqqopensdkgrouptribeshare、mqqopensdkfriend、mqqopensdkapi、mqqopensdkapiV2、mqqopensdkapiV3、mqzoneopensdk、wtloginmqq、wtloginmqq2、mqqwpa、mqzone、mqzonev2、mqzoneshare、wtloginqzone、mqzonewx、\r\nmqzoneopensdkapiV2、mqzoneopensdkapi19、mqzoneopensdkapi、mqzoneopensdk、`\r\n\r\n在`Info->URL Types` 中增加QQ的scheme： `Identifier` 设置为`qq`, `URL Schemes` 设置为你注册的QQ开发者账号中的APPID，需要加前缀`tencent`，例如`tencent1104903684`\r\n\r\n在你工程的`AppDelegate.m`文件中添加如下代码：\r\n\r\n```\r\n#import \"../Libraries/LinkingIOS/RCTLinkingManager.h\"\r\n\r\n\r\n- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {\r\n  return [RCTLinkingManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];\r\n}\r\n\r\n```\r\n\r\n### 安装Android工程\r\n\r\n在`android/settings.gradle`里添加如下代码：\r\n\r\n```\r\ninclude ':react-native-qq'\r\nproject(':react-native-qq').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-qq/android')\r\n```\r\n\r\n在`app/build.gradle`里添加如下代码：\r\n\r\n```\r\ncompile project(':react-native-qq')\r\n```\r\n\r\n在`android/app/build.gradle`里的`dependencies`结构中添加如下代码：\r\n\r\n```\r\ndependencies{\r\n    ... // 原本的代码\r\n    compile project(':react-native-qq')\r\n}\r\n```\r\n\r\n\r\n在`android/app/build.gradle`里，defaultConfig栏目下添加如下代码：\r\n\r\n```\r\n\t\tmanifestPlaceholders = [\r\n            QQ_APPID: \"<平台申请的APPID>\"\r\n        ]\r\n```\r\n\r\n以后如果需要修改APPID，只需要修改此一处。\r\n\r\n`android/app/src/main/java/<你的包名>/MainApplication.java`中添加如下两行：\r\n\r\n```java\r\n...\r\nimport cn.reactnative.modules.qq.QQPackage;  // 在public class MainApplication之前import\r\n\r\npublic class MainApplication extends Application implements ReactApplication {\r\n\r\n  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {\r\n    @Override\r\n    protected boolean getUseDeveloperSupport() {\r\n      return BuildConfig.DEBUG;\r\n    }\r\n\r\n    @Override\r\n    protected List<ReactPackage> getPackages() {\r\n      return Arrays.<ReactPackage>asList(\r\n          new QQPackage(), // 然后添加这一行\r\n          new MainReactPackage()\r\n      );\r\n    }\r\n  };\r\n\r\n  @Override\r\n  public ReactNativeHost getReactNativeHost() {\r\n      return mReactNativeHost;\r\n  }\r\n}\r\n```\r\n\r\n另外，确保你的MainActivity.java中有`onActivityResult`的实现：\r\n\r\n```java\r\n    @Override\r\n    public void onActivityResult(int requestCode, int resultCode, Intent data){\r\n        super.onActivityResult(requestCode, resultCode, data);\r\n        mReactInstanceManager.onActivityResult(requestCode, resultCode, data);\r\n    }\r\n```\r\n\r\n## 如何使用\r\n\r\n### 引入包\r\n\r\n```\r\nimport * as QQAPI from 'react-native-qq';\r\n```\r\n\r\n### API\r\n\r\n#### QQAPI.login([scopes])\r\n\r\n- scopes: 登录所申请的权限，默认为get_simple_userinfo。 需要多个权限时，以逗号分隔。\r\n\r\n调用QQ登录，可能会跳转到QQ应用或者打开一个网页浏览器以供用户登录。在本次login返回前，所有接下来的login调用都会直接失败。\r\n\r\n返回一个`Promise`对象。成功时的回调为一个类似这样的对象：\r\n\r\n```javascript\r\n{\r\n\t\"access_token\": \"CAF0085A2AB8FDE7903C97F4792ECBC3\",\r\n\t\"openid\": \"0E00BA738F6BB55731A5BBC59746E88D\"\r\n\t\"expires_in\": \"1458208143094.6\"\t\r\n\t\"oauth_consumer_key\": \"12345\"\r\n}\r\n```\r\n\r\n#### QQAPI.shareToQQ(data)\r\n\r\n分享到QQ好友，参数同QQAPI.shareToQzone，返回一个`Promise`对象\r\n\r\n#### QQAPI.shareToQzone(data)\r\n\r\n分享到QZone，参数为一个object，可以有如下的形式：\r\n\r\n```javascript\r\n// 分享图文消息\r\n{\t\r\n\ttype: 'news',\r\n\ttitle: 分享标题,\r\n\tdescription: 描述,\r\n\twebpageUrl: 网页地址,\r\n\timageUrl: 远程图片地址,\r\n}\r\n\r\n// 其余格式尚未实现。\r\n```\r\n\r\n## 常见问题\r\n\r\n#### Android: 调用QQAPI.login()没有反应\r\n\r\n通常出现这个原因是因为Manifest没有配置好，检查Manifest中有关Activity的配置。\r\n\r\n#### Android: 已经成功激活QQ登录，但回调没有被执行\r\n\r\n通常出现这个原因是因为MainActivity.java中缺少onActivityResult的调用。\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reactnativecn/react-native-qq.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "2.0.5"
+}
